@@ -1,25 +1,47 @@
 from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
 import os
 import csv
 
+# TODO 1. add encryption function, 2. connect to db 3. general flow
 # get add or view argument as cli argument with the master password
 
 # get password
+
+# ecrypt takes data and uses the aes module to encrypt
+# store key with the database to decrypt the password
+# store cipher.nonce to verify?
+
+
+def encrypt(user_password):
+    # Using bytes(str, enc)
+    # convert string to byte form
+    byte_string = bytes(user_password, "utf-8")
+    key = get_random_bytes(16)  # must be 16, 24 or 32 bytes long
+    # aes constructor which takes in key and optional mode
+    cipher_obj = AES.new(key, AES.MODE_EAX)
+    encrypted_password, tag = cipher_obj.encrypt_and_digest(byte_string)
+
+    # return whatever is encrypted
+
 
 # add will ask for the name of service
 # ask user for password
 # encode it (diff function)
 # add it to the db
 
+
 # check if db is empty so don't add headers everytime
 def add():
-
     website = input("enter name of service")
     password = input("enter password")
 
     data = [website, password]
     header = ["Website", " password\n"]
 
+    # encrypt the website and password
+    # call encrypt function with data[1] as parameter
+    # encrypt(data[1])
     with open("pass.txt", "a") as f:
         # f.writelines(header)
         f.write(data[0])
