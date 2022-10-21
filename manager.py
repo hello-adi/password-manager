@@ -21,6 +21,7 @@ def encrypt(user_password):
     # aes constructor which takes in key and optional mode
     cipher_obj = AES.new(key, AES.MODE_EAX)
     encrypted_password, tag = cipher_obj.encrypt_and_digest(byte_string)
+    nonce = cipher_obj.nonce
 
     # return whatever is encrypted
 
@@ -30,6 +31,17 @@ def encrypt(user_password):
 # encode it (diff function)
 # add it to the db
 
+# decrypt to get the 1.service from the database
+# the key, the password and the tag
+# decrypts the password using the key
+# verifies the password using the tag
+# then showcases it to the user.
+
+def decrypt(key, encrypt_pass, tag, nonce):
+    cipher_obj = AES.new(key, AES.MODE_EAX, nonce)
+    decoded_password = cipher_obj.decrypt_and_verify(encrypt_pass, tag)
+
+    # return decoded password
 
 # check if db is empty so don't add headers everytime
 def add():
