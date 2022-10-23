@@ -1,3 +1,6 @@
+import mysql.connector
+from mysql.connector import Error
+import pandas as pd
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 import os
