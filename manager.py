@@ -1,6 +1,4 @@
-import mysql.connector
-from mysql.connector import Error
-import pandas as pd
+from db import create_connection
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 import os
@@ -8,6 +6,8 @@ import csv
 
 # TODO 1. add encryption function, 2. connect to db 3. general flow
 # get add or view argument as cli argument with the master password
+
+# TODO run create_connection everytime app runs
 
 # get password
 
