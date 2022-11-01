@@ -1,4 +1,4 @@
-from db import create_connection
+import db
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 import os
@@ -40,11 +40,13 @@ def encrypt(user_password):
 # verifies the password using the tag
 # then showcases it to the user.
 
+
 def decrypt(key, encrypt_pass, tag, nonce):
     cipher_obj = AES.new(key, AES.MODE_EAX, nonce)
     decoded_password = cipher_obj.decrypt_and_verify(encrypt_pass, tag)
 
     # return decoded password
+
 
 # check if db is empty so don't add headers everytime
 def add():
